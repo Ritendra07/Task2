@@ -1,0 +1,23 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+# Load the dataset
+df = pd.read_csv("titanic.csv")  # Update path if needed
+# Survival rate by gender
+sns.countplot(x='Sex', hue='Survived', data=df)
+plt.title("Survival Count by Gender")
+plt.show()
+
+# Survival rate by passenger class
+sns.countplot(x='Pclass', hue='Survived', data=df)
+plt.title("Survival Count by Passenger Class")
+plt.show()
+
+# Age distribution by survival
+sns.kdeplot(data=df[df['Survived'] == 1]['Age'], label="Survived", shade=True)
+sns.kdeplot(data=df[df['Survived'] == 0]['Age'], label="Did Not Survive", shade=True)
+plt.title("Age Distribution by Survival")
+plt.legend()
+plt.show()
